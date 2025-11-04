@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>What'sInMyFridge</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#4cdf20",
+            "background-light": "#f6f8f6",
+            "background-dark": "#152111",
+          },
+          fontFamily: {
+            "display": ["Epilogue", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
+  </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-[#131711] dark:text-white">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-10 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+<div class="container mx-auto max-w-6xl">
+<div class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#f1f4f0] dark:border-gray-800 px-6 py-3">
+<div class="flex items-center gap-4 text-[#131711] dark:text-white">
+<div class="size-8 text-primary">
+              <img alt="logo" src="logo.jpg" />
+            </div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">What'sInMyFridge</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+<nav class="flex items-center gap-9">
+<a class="text-sm font-medium leading-normal hover:text-primary" href="dashboard.html">Home</a>
+<a class="text-sm font-medium leading-normal hover:text-primary" href="ingredient_input.html">Suggestions</a>
+</nav>
+<div class="flex gap-2">
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<div class="container mx-auto max-w-6xl px-6 py-10 md:py-20">
+<div class="layout-content-container flex flex-col items-center">
+<!-- PageHeading -->
+<div class="flex flex-col items-center text-center gap-3 p-4 max-w-2xl">
+<p class="text-[#131711] dark:text-white text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">What's in Your Kitchen?</p>
+<p class="text-[#6c8764] dark:text-gray-400 text-base font-normal leading-normal">Add ingredients by photo or name to get personalized dish suggestions.</p>
+</div>
+<div class="w-full flex flex-col lg:flex-row gap-8 lg:gap-6 mt-10">
+<!-- Left Column: Upload -->
+<div class="flex flex-col flex-1">
+<!-- SectionHeader -->
+<h2 class="text-[#131711] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Snap &amp; Upload</h2>
+<!-- EmptyState (Upload Area) -->
+<div class="flex flex-col p-4">
+<div class="flex flex-col items-center gap-6 rounded-xl border-2 border-dashed border-[#dee5dc] dark:border-gray-700 px-6 py-14">
+<div class="flex max-w-[480px] flex-col items-center gap-4">
+<span class="material-symbols-outlined text-4xl text-[#6c8764] dark:text-gray-400">upload_file</span>
+<p class="text-[#131711] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] text-center">Drag &amp; Drop photos here</p>
+<p class="text-[#6c8764] dark:text-gray-400 text-sm font-normal leading-normal text-center">or click the button below to browse your files</p>
+</div>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#f1f4f0] dark:bg-white/10 text-[#131711] dark:text-white text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Upload Photos</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Separator -->
+<div class="flex items-center justify-center lg:flex-col lg:w-auto w-full">
+<div class="w-full h-px lg:w-px lg:h-full bg-[#dee5dc] dark:bg-gray-700"></div>
+<p class="text-[#6c8764] dark:text-gray-400 text-sm font-normal leading-normal px-4 lg:py-4 bg-background-light dark:bg-background-dark">OR</p>
+<div class="w-full h-px lg:w-px lg:h-full bg-[#dee5dc] dark:bg-gray-700"></div>
+</div>
+<!-- Right Column: Text Input -->
+<div class="flex flex-col flex-1">
+<!-- SectionHeader -->
+<h2 class="text-[#131711] dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Type Your Ingredients</h2>
+<div class="flex flex-col p-4 gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+<input class="w-full h-12 pl-10 pr-4 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-colors dark:text-white placeholder:text-gray-400" placeholder="e.g., chicken, tomatoes, basil..." type="text"/>
+</div>
+<!-- Ingredient Tags -->
+<div class="flex flex-wrap gap-2 min-h-[40px]">
+<div class="flex items-center gap-2 bg-primary/20 text-[#131711] dark:bg-primary/30 dark:text-white px-3 py-1.5 rounded-full text-sm font-medium">
+<span>Chicken Breast</span>
+<button class="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white">
+<span class="material-symbols-outlined !text-base">close</span>
+</button>
+</div>
+<div class="flex items-center gap-2 bg-primary/20 text-[#131711] dark:bg-primary/30 dark:text-white px-3 py-1.5 rounded-full text-sm font-medium">
+<span>Tomatoes</span>
+<button class="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white">
+<span class="material-symbols-outlined !text-base">close</span>
+</button>
+</div>
+<div class="flex items-center gap-2 bg-primary/20 text-[#131711] dark:bg-primary/30 dark:text-white px-3 py-1.5 rounded-full text-sm font-medium">
+<span>Basil</span>
+<button class="text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white">
+<span class="material-symbols-outlined !text-base">close</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Main CTA -->
+<div class="mt-12 w-full max-w-md">
+<a href="recommend.html">
+<button class="flex w-full min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-6 bg-primary text-[#131711] text-lg font-bold leading-normal tracking-[0.015em] transition-transform hover:scale-105 active:scale-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100">
+<span class="truncate">Find Dishes</span>
+</button>
+</a>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
