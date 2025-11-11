@@ -29,11 +29,10 @@ def recommend():
             for _, row in recommendations.iterrows():
                 recipe_data = {
                     "TranslatedRecipeName": str(row.get("TranslatedRecipeName", "")),
-                    "CleanedIngredients": row.get("CleanedIngredients", []),
+                    "ExtraIngredientsCount": str(row.get("ExtraIngredientsCount", "")),
                     "Cuisine": str(row.get("Cuisine", "")),
                     "Course": str(row.get("Course", "")),
-                    "Diet": str(row.get("Diet", "")),
-                    "RecipeSteps": row.get("RecipeSteps", [])
+                    "Diet": str(row.get("Diet", ""))
                 }
                 recipes.append(recipe_data)
 
@@ -43,7 +42,6 @@ def recommend():
     
     recipes = session.get('last_recipes', [])
     query = session.get('last_query', "")
-    print("SESSION DATA:", dict(session))
     return render_template('recommend.html', recipes = recipes, query = query)
 
 @app.route('/recipe/<name>')
@@ -51,8 +49,9 @@ def recipe_steps(name):
     recipe = get_recipe_steps(name)
     if not recipe:
         return "Recipe not found", 404
-    steps = recipe["RecipeSteps"].split(". ")
-    return render_template('dish_detail.html', recipe=recipe, steps=steps)
+    steps = recipe["RecipeSteps"].strip("[]").strip("''").split("', '")
+    detailed_steps = [ sentence.strip() for step in steps for sentence in step.split('.') if sentence.strip() ]
+    return render_template('dish_detail.html', recipe=recipe, steps=detailed_steps)
 
 if __name__ == '__main__':
     app.run(debug=True)
