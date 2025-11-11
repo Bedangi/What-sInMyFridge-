@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+        <title>What'sInMyFridge</title>
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+        <script>
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        colors: {
+                            "primary": "#4cdf20",
+                            "background-light": "#f6f8f6",
+                            "background-dark": "#152111",
+                        },
+                        fontFamily: {
+                            "display": ["Epilogue", "sans-serif"]
+                        },
+                        borderRadius: {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                        },
+                    },
+                },
+            }
+        </script>
+        <style>
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+                font-size: 24px;
+            }
+        </style>
+    </head>
+    <body class="bg-background-light dark:bg-background-dark font-display">
+        <div class="relative flex min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+            <div class="layout-container flex h-full grow flex-col">
+                <div class="flex flex-1 justify-center py-5 sm:px-4 md:px-10 lg:px-20 xl:px-40">
+                    <div class="layout-content-container flex flex-col w-full max-w-[960px] flex-1">
+                        <!-- TopNavBar -->
+                        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-black/10 dark:border-white/10 px-4 md:px-10 py-3">
+                            <div class="flex items-center gap-8">
+                                <div class="flex items-center gap-4 text-black dark:text-white">
+                                    <div class="size-8 text-primary">
+                                        <img alt="logo" src="./logo.jpg" />
+                                    </div>
+                                    <h2 class="text-black dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">What'sInMyFridge</h2>
+                                </div>
+                            </div>
+                        <div class="flex flex-1 justify-end gap-2 md:gap-8">
+                            <div class="hidden md:flex items-center gap-9">
+                                <a class="hover:text-primary text-sm font-medium leading-normal" href="{{ url_for('home') }}">Home</a>
+                                <a class="hover:text-primary text-sm font-medium leading-normal" href="{{ url_for('ingredients') }}">Upload</a>
+                            </div>
+                            </div>
+                        </header>
+                        <!-- PageHeading -->
+                        <div class="flex flex-wrap justify-between gap-3 p-4">
+                            <div class="flex min-w-72 flex-col gap-3">
+                                <p class="text-black dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">Dishes you can make with {{ query }}</p>
+                            </div>
+                        </div>
+                        <!-- ImageGrid -->
+                        <div class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4 p-4">
+                            {% if recipes %}
+                                {% for recipe in recipes %}
+                            <div class="flex flex-col gap-3 pb-3 group cursor-pointer">
+                                <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg overflow-hidden">
+                                    <a href="{{ url_for('recipe_steps', name=recipe['TranslatedRecipeName']) }}">
+                                        <div class="w-full h-full bg-center bg-cover transition-transform duration-300 ease-in-out group-hover:scale-105" data-alt="A classic margherita pizza with fresh basil" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAiyBOHPBPbW9uXSoH_GCkHGca-LdtSN4Nr_WabX-QNW_myODj9sFP1GfvyWaKsi7h9v79HPfU6CZttoS_8-o6U_ZBy7fp7SCjeCYYjW817XEJv4lll6iqU2Jwa3FbFbuCBPhyCihJ1h3pO1QWCr5k8XvuZPyKH9Sc84TiYnLvdIa3lWSi6Rhoz_PJIL5k9VC4vfVCJNJ2rDe1Uu59ciHpNW0NMRMxh-bk-vjezWIghUGmEeVEHrGUKdS_vAePr13mREy5iGBPletg");'></div>
+                                    </a>
+                                </div>
+                                <div>
+                                    <p class="text-black dark:text-white text-base font-medium leading-normal">{{ recipe['TranslatedRecipeName'] }}</p>
+                                    <p class="text-slate-600 dark:text-slate-400 text-sm font-normal leading-normal">Missing: {{ recipe['MissingIngredients'] }}</p>
+                                    <p class="text-slate-600 dark:text-slate-400 text-sm font-normal leading-normal">Cuisine: {{ recipe['Cuisine'] }} · {{ recipe['Diet'] }}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                            <p class="text-center text-gray-500 text-lg mt-8">No recipes found for "{{ query }}"</p>
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

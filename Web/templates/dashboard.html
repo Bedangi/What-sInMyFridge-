@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>What'sInMyFridge</title>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#4cdf20",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#152111",
+                        "text-light": "#131711",
+                        "text-dark": "#f1f4f0",
+                        "subtext-light": "#6c8764",
+                        "subtext-dark": "#a2b89d",
+                        "border-light": "#dee5dc",
+                        "border-dark": "#3a4a35",
+                        "card-light": "#ffffff",
+                        "card-dark": "#1e2d1a",
+                    },
+                    fontFamily: {
+                        display: ["Epilogue", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px",
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+        }
+    </style>
+</head>
+
+<body class="font-display bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+    <div class="relative flex min-h-screen w-full flex-col">
+        <!-- TopNavBar -->
+        <header class="sticky top-0 z-50 flex justify-center border-b border-border-light dark:border-border-dark bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm">
+            <div class="flex w-full max-w-6xl items-center justify-between whitespace-nowrap px-4 py-3 sm:px-6">
+                <div class="flex items-center gap-4">
+                    <div class="size-8 text-primary">
+                        <img alt="logo" src="./logo.jpg" />
+                    </div>
+                    <h2 class="text-xl font-bold leading-tight tracking-[-0.015em] text-text-light dark:text-text-dark">
+                        What'sInMyFridge
+                    </h2>
+                </div>
+                <div class="hidden md:flex items-center gap-9">
+                    <a class="text-sm font-medium leading-normal hover:text-primary" href="{{ url_for('ingredients') }}">Upload</a>
+                    <a class="hover:text-primary text-sm font-medium leading-normal" href="{{ url_for('recommend') }}">Suggestions</a>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex flex-1 flex-col items-center">
+            <div class="flex w-full max-w-6xl flex-col px-4 py-16 sm:px-6 sm:py-20 lg:py-24">
+                <!-- Hero Section -->
+                <section class="w-full @container">
+                    <div class="@[480px]:p-0">
+                        <div
+                            class="flex min-h-[480px] flex-col items-center justify-center gap-6 rounded-xl bg-cover bg-center bg-no-repeat p-4 text-center @[480px]:gap-8"
+                            style='background-image: linear-gradient(rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBNvJBf2mB6Vq6EuNoVxqqIbp95DqEJMbKcyVDd1H5PUjw8SdeVZSr_BfEDMz5YAJXz_w9apOrT4MlWY6hobwB_Gl6lCWwGblVEivozyw7oZOcyGDOLZVmNDRLxTAeWeRWIIv6-uo35_W4QGddpJln_YUUHpB82rteU9fG0TKsSLBp-YzReUQH_gext9Xm2mZelJuWHqZqRvwdI5lA3F7WNF1nN8QrAUCUFczDwHY2oOB1xjkOG5TY7XmyPkZ38GZaAwBAb0gm8Kwk");'>
+                            <div class="flex flex-col gap-2">
+                                <h1 class="text-4xl font-black leading-tight tracking-[-0.033em] text-white @[480px]:text-5xl">
+                                    Turn Your Leftovers into a Masterpiece
+                                </h1>
+                                <h2 class="text-base font-normal leading-normal text-white @[480px]:text-lg">
+                                    Snap a photo of your ingredients or list them out, and we'll find the perfect recipe for you.
+                                </h2>
+                            </div>
+
+                            <a href="{{ url_for('ingredients') }}" class="flex h-14 min-w-[84px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-primary px-5 text-base font-bold leading-normal tracking-[0.015em] text-text-light hover:opacity-90 transition-opacity @[480px]:h-16">
+                                <span class="truncate">Find My Next Meal</span>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Feature Section -->
+                <section class="w-full py-16 sm:py-20 lg:py-24">
+                    <div class="flex flex-col gap-10 @container">
+                        <div class="flex flex-col items-center gap-4 text-center">
+                            <h2 class="text-3xl font-bold leading-tight tracking-[-0.015em] text-text-light dark:text-text-dark @[480px]:text-4xl">
+                                A smarter way to cook
+                            </h2>
+                            <p class="max-w-3xl text-base font-normal leading-normal text-subtext-light dark:text-subtext-dark">
+                                Discover delicious recipes with the ingredients you already have. It's simple, fast, and reduces food waste.
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-6">
+                            <div class="flex flex-1 flex-col gap-4 rounded-xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6 text-center items-center">
+                                <div class="flex items-center justify-center size-12 rounded-lg bg-primary/20 text-primary">
+                                    <span class="material-symbols-outlined !text-3xl">upload_file</span>
+                                </div>
+                                <div class="flex flex-col gap-1">
+                                    <h3 class="text-lg font-bold leading-tight text-text-light dark:text-text-dark">1. Upload with Ease</h3>
+                                    <p class="text-sm font-normal leading-normal text-subtext-light dark:text-subtext-dark">
+                                        Simply type your ingredients or snap a quick photo. We will handle the rest.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-1 flex-col gap-4 rounded-xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6 text-center items-center">
+                                <div class="flex items-center justify-center size-12 rounded-lg bg-primary/20 text-primary">
+                                    <span class="material-symbols-outlined !text-3xl">lightbulb</span>
+                                </div>
+                                <div class="flex flex-col gap-1">
+                                    <h3 class="text-lg font-bold leading-tight text-text-light dark:text-text-dark">2. Discover Dishes</h3>
+                                    <p class="text-sm font-normal leading-normal text-subtext-light dark:text-subtext-dark">
+                                        Get personalized dish suggestions tailored to your taste and pantry.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-1 flex-col gap-4 rounded-xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark p-6 text-center items-center">
+                                <div class="flex items-center justify-center size-12 rounded-lg bg-primary/20 text-primary">
+                                    <span class="material-symbols-outlined !text-3xl">restaurant_menu</span>
+                                </div>
+                                <div class="flex flex-col gap-1">
+                                    <h3 class="text-lg font-bold leading-tight text-text-light dark:text-text-dark">3. Enjoy Your Meal</h3>
+                                    <p class="text-sm font-normal leading-normal text-subtext-light dark:text-subtext-dark">
+                                        Follow simple, step-by-step instructions and create a delicious meal in no time.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
