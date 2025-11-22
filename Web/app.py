@@ -32,7 +32,8 @@ def recommend():
                     "ExtraIngredientsCount": str(row.get("ExtraIngredientsCount", "")),
                     "Cuisine": str(row.get("Cuisine", "")),
                     "Course": str(row.get("Course", "")),
-                    "Diet": str(row.get("Diet", ""))
+                    "Diet": str(row.get("Diet", "")),
+                    "ImageURL": str(row.get("ImageURL", ""))
                 }
                 recipes.append(recipe_data)
 

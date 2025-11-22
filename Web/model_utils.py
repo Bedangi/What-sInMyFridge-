@@ -4,10 +4,6 @@ import re
 
 # Load cleaned dataset once
 df = pd.read_csv("../recommend_model/cleaned_indian_food_1.csv")
-df = df.drop(columns=['TranslatedInstructions', 'TranslatedIngredients'])
-
-df.dropna(subset=["CleanedIngredients"], inplace=True)
-df.reset_index(drop=True, inplace=True)
 
 vectorizer = TfidfVectorizer(stop_words="english")
 ingredient_vectors = vectorizer.fit_transform(df["CleanedIngredients"])
@@ -44,7 +40,7 @@ def recommend_recipe_precise(user_ingredients, top_n=10):
 
     results = sorted(results, key=lambda x: (x[2], -x[1]))
     indices = [r[0] for r in results]
-    rec = df.iloc[indices][["TranslatedRecipeName", "CleanedIngredients", "Cuisine", "Course", "Diet", "RecipeSteps"]].copy()
+    rec = df.iloc[indices][["TranslatedRecipeName", "CleanedIngredients", "Cuisine", "Course", "Diet", "RecipeSteps","ImageURL"]].copy()
     rec["ExtraIngredientsCount"] = [r[2] for r in results]
     rec["MissingIngredients"] = [", ".join(r[3]) if r[3] else "None" for r in results]
     rec["Rank"] = range(1, len(rec) + 1)

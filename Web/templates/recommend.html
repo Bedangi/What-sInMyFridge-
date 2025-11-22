@@ -73,7 +73,7 @@
                             <div class="flex flex-col gap-3 pb-3 group cursor-pointer">
                                 <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg overflow-hidden">
                                     <a href="{{ url_for('recipe_steps', name=recipe['TranslatedRecipeName']) }}">
-                                        <div class="w-full h-full bg-center bg-cover transition-transform duration-300 ease-in-out group-hover:scale-105" data-alt="A classic margherita pizza with fresh basil" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAiyBOHPBPbW9uXSoH_GCkHGca-LdtSN4Nr_WabX-QNW_myODj9sFP1GfvyWaKsi7h9v79HPfU6CZttoS_8-o6U_ZBy7fp7SCjeCYYjW817XEJv4lll6iqU2Jwa3FbFbuCBPhyCihJ1h3pO1QWCr5k8XvuZPyKH9Sc84TiYnLvdIa3lWSi6Rhoz_PJIL5k9VC4vfVCJNJ2rDe1Uu59ciHpNW0NMRMxh-bk-vjezWIghUGmEeVEHrGUKdS_vAePr13mREy5iGBPletg");'></div>
+                                        <div class="w-full h-full bg-center bg-cover transition-transform duration-300 ease-in-out group-hover:scale-105" data-alt="{{ recipe['TranslatedRecipeName'] }}" style="background-image: url('{{ recipe.ImageURL }}');"></div>
                                     </a>
                                 </div>
                                 <div>
